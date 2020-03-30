@@ -1,0 +1,38 @@
+{
+  "rewards": [
+    {
+      "gameType": "WALLS",
+      "amount": 3000,
+      "rarity": "COMMON",
+      "reward": "coins"
+    },
+    {
+      "gameType": "SKYWARS",
+      "amount": 4000,
+      "rarity": "COMMON",
+      "reward": "coins"
+    },
+    {
+      "package": "specialoccasion_reward_card_skull_health_potion",
+      "rarity": "RARE",
+      "reward": "housing_package"
+    }
+  ],
+  "id": "09354329",
+  "skippable": false,
+  "dailyStreak": {
+    "value": 5,
+    "score": 5,
+    "highScore": 5,
+    "keeps": true,
+    "token": false
+  },
+  "ad": {
+    "video": "TRsCiBNYY7M",
+    "duration": 28,
+    "link": "https://store.hypixel.net/?utm_source=rewards-video&utm_medium=website&utm_content=TRsCiBNYY7M&utm_campaign=Rewards",
+    "buttonText": "Visit the Store"
+  },
+  "activeAd": 0,
+  "playwire": false
+}

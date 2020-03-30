@@ -1,0 +1,37 @@
+{
+  "rewards": [
+    {
+      "package": "specialoccasion_reward_card_skull_coin_bag",
+      "rarity": "COMMON",
+      "reward": "housing_package"
+    },
+    {
+      "gameType": "BATTLEGROUND",
+      "amount": 3000,
+      "rarity": "COMMON",
+      "reward": "coins"
+    },
+    {
+      "amount": 10,
+      "rarity": "COMMON",
+      "reward": "dust"
+    }
+  ],
+  "id": "6d302bf1",
+  "skippable": false,
+  "dailyStreak": {
+    "value": 3,
+    "score": 3,
+    "highScore": 3,
+    "keeps": true,
+    "token": true
+  },
+  "ad": {
+    "video": "yc7xiK4dnII",
+    "duration": 30,
+    "link": "https://store.hypixel.net/?utm_source=rewards-video&utm_medium=website&utm_content=yc7xiK4dnII&utm_campaign=Rewards",
+    "buttonText": "Visit the Store"
+  },
+  "activeAd": 1,
+  "playwire": false
+}

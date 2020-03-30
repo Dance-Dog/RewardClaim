@@ -1,0 +1,14 @@
+/*
+
+# Important Dirs
+!/src
+!/Sample Reward Json
+
+# Minecraft Options
+!/run/options.txt
+
+# Gradle & Wrapper
+!gradlew
+!gradlew.bat
+!build.gradle
+!/gradle

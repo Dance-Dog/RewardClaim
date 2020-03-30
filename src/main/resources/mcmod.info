@@ -1,0 +1,15 @@
+[
+  {
+    "name": "§6§lRewardClaim§r",
+    "modid": "rewardclaim",
+    "description": "Claim your Hypixel daily rewards §owithout opening a browser!§r",
+    "version": "${version}",
+    "mcversion": "1.8.9",
+    "url": "https://github.com/Dance-Dog/RewardClaim",
+    "authorList": [
+      "Dance_Dog"
+    ],
+    "logoFile": "assets/rewardclaim/textures/banner.png",
+    "credits": "§lAll credit goes to Hypixel Inc. (§r https://hypixel.net §l) for the §loriginal §lDaily §lReward §lassets §lused §lby §lthis §lmod§r"
+  }
+]

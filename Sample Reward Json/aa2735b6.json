@@ -1,0 +1,38 @@
+{
+  "rewards": [
+    {
+      "gameType": "LEGACY",
+      "amount": 20,
+      "rarity": "RARE",
+      "reward": "tokens"
+    },
+    {
+      "amount": 10,
+      "rarity": "COMMON",
+      "reward": "dust"
+    },
+    {
+      "gameType": "BATTLEGROUND",
+      "amount": 3000,
+      "rarity": "COMMON",
+      "reward": "coins"
+    }
+  ],
+  "id": "aa2735b6",
+  "skippable": true,
+  "dailyStreak": {
+    "value": 5,
+    "score": 5,
+    "highScore": 37,
+    "keeps": true,
+    "token": false
+  },
+  "ad": {
+    "video": "GNhbZ5guqO0",
+    "duration": 30,
+    "link": "https://store.hypixel.net/?utm_source=rewards-video&utm_medium=website&utm_content=GNhbZ5guqO0&utm_campaign=Rewards",
+    "buttonText": "Visit the Store"
+  },
+  "activeAd": 2,
+  "playwire": false
+}

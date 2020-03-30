@@ -1,0 +1,18 @@
+========== Active Ad IDs ==========
+- 0: TRsCiBNYY7M (Support for Hypixel)
+- 1: yc7xiK4dnII (Pirates)
+- 2: GNhbZ5guqO0 (Hypixel Zoo)
+
+========== Field Meanings ==========
+- rewards.*.rarity: Rarity of the reward (CardType) [all]
+- rewards.*.reward: Type of reward (RewardType) [all]
+
+- rewards.*.gameType: Game that the reward is for (GameType) [coins and tokens only]
+- rewards.*.amount: Amount of type rewarded [all except housing_package and add_vanity]
+- rewards.*.intlist: Unknown; has something to do with amount [unknown; likely same as amount]
+
+- rewards.*.package: Specifies the specific reward within the reward type [housing_package only]
+- rewards.*.key: ID of the lobby cosmetic to reward [add_vanity only]
+
+========== I18n Notes ==========
+- rewards.*.key for a suit piece looks like "suit_treasure_chestplate"

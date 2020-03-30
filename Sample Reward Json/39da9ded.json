@@ -1,0 +1,38 @@
+{
+  "rewards": [
+    {
+      "amount": 10000,
+      "rarity": "COMMON",
+      "reward": "experience"
+    },
+    {
+      "gameType": "SKYWARS",
+      "amount": 5000,
+      "rarity": "COMMON",
+      "reward": "tokens"
+    },
+    {
+      "gameType": "WALLS3",
+      "amount": 3000,
+      "rarity": "COMMON",
+      "reward": "coins"
+    }
+  ],
+  "id": "39da9ded",
+  "skippable": true,
+  "dailyStreak": {
+    "value": 4,
+    "score": 4,
+    "highScore": 37,
+    "keeps": true,
+    "token": false
+  },
+  "ad": {
+    "video": "GNhbZ5guqO0",
+    "duration": 30,
+    "link": "https://store.hypixel.net/?utm_source=rewards-video&utm_medium=website&utm_content=GNhbZ5guqO0&utm_campaign=Rewards",
+    "buttonText": "Visit the Store"
+  },
+  "activeAd": 2,
+  "playwire": false
+}

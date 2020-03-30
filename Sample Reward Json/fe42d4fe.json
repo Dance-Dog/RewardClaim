@@ -1,0 +1,36 @@
+{
+  "rewards": [
+    {
+      "amount": 1,
+      "rarity": "RARE",
+      "reward": "adsense_token"
+    },
+    {
+      "package": "specialoccasion_reward_card_skull_mana_potion",
+      "rarity": "RARE",
+      "reward": "housing_package"
+    },
+    {
+      "amount": 20,
+      "rarity": "RARE",
+      "reward": "dust"
+    }
+  ],
+  "id": "fe42d4fe",
+  "skippable": false,
+  "dailyStreak": {
+    "value": 2,
+    "score": 2,
+    "highScore": 2,
+    "keeps": true,
+    "token": false
+  },
+  "ad": {
+    "video": "TRsCiBNYY7M",
+    "duration": 28,
+    "link": "https://store.hypixel.net/?utm_source=rewards-video&utm_medium=website&utm_content=TRsCiBNYY7M&utm_campaign=Rewards",
+    "buttonText": "Visit the Store"
+  },
+  "activeAd": 0,
+  "playwire": false
+}

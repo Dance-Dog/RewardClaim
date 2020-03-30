@@ -1,0 +1,37 @@
+{
+  "rewards": [
+    {
+      "amount": 20,
+      "rarity": "RARE",
+      "reward": "dust"
+    },
+    {
+      "gameType": "SURVIVAL_GAMES",
+      "amount": 3000,
+      "rarity": "COMMON",
+      "reward": "coins"
+    },
+    {
+      "amount": 20000,
+      "rarity": "RARE",
+      "reward": "experience"
+    }
+  ],
+  "id": "f89a1d14",
+  "skippable": true,
+  "dailyStreak": {
+    "value": 2,
+    "score": 2,
+    "highScore": 37,
+    "keeps": true,
+    "token": false
+  },
+  "ad": {
+    "video": "TRsCiBNYY7M",
+    "duration": 28,
+    "link": "https://store.hypixel.net/?utm_source=rewards-video&utm_medium=website&utm_content=TRsCiBNYY7M&utm_campaign=Rewards",
+    "buttonText": "Visit the Store"
+  },
+  "activeAd": 0,
+  "playwire": false
+}

@@ -1,0 +1,37 @@
+{
+  "rewards": [
+    {
+      "package": "specialoccasion_reward_card_skull_jewelery_box",
+      "rarity": "COMMON",
+      "reward": "housing_package"
+    },
+    {
+      "gameType": "SKYWARS",
+      "amount": 8000,
+      "rarity": "RARE",
+      "reward": "coins"
+    },
+    {
+      "amount": 10,
+      "rarity": "COMMON",
+      "reward": "dust"
+    }
+  ],
+  "id": "c9f0505c",
+  "skippable": false,
+  "dailyStreak": {
+    "value": 3,
+    "score": 3,
+    "highScore": 3,
+    "keeps": true,
+    "token": false
+  },
+  "ad": {
+    "video": "GNhbZ5guqO0",
+    "duration": 30,
+    "link": "https://store.hypixel.net/?utm_source=rewards-video&utm_medium=website&utm_content=GNhbZ5guqO0&utm_campaign=Rewards",
+    "buttonText": "Visit the Store"
+  },
+  "activeAd": 2,
+  "playwire": false
+}

@@ -1,0 +1,95 @@
+# Chat & UI Text
+message.gui.title.initial=Click the button below to start turning cards!
+message.gui.title.choosing=Click to Claim one of the 3 Rewards!
+message.gui.title.final=Great choice! Come back tomorrow for another!
+
+# Card Types
+
+rarity.common=Common
+rarity.rare=Rare
+rarity.epic=Epic
+rarity.legendary=Legendary
+
+# =============================
+
+# Game Coins
+type.coins=%s Coins
+type.coins.description=In-game Coins for %s
+
+# Mystery Dust
+type.dust=Mystery Dust
+type.dust.description=Used to craft cosmetic items
+
+# Network Experience
+type.experience=Hypixel EXP
+type.experience.description=Used to increase your Hypixel Level
+
+# Normal Mystery Boxes
+type.mystery_box=Mystery Box
+type.mystery_box.description=Open to unlock cosmetic items!
+
+# Skywars Souls
+type.souls=SkyWars Souls
+type.souls.description=Used with the SkyWars Soul Well
+
+# Giftable Mystery Boxes
+type.gift_box=Gift Box
+type.gift_box.description=Send a Mystery Box to your friends!
+
+# Daily Reward Token
+type.adsense_token=Reward Token
+type.adsense_token.description=Each token gives you 1 more go at drawing Reward Cards
+
+# SkyWars/Classic Tokens
+type.tokens=%s Tokens
+type.tokens.description=In-game tokens for %s
+
+# Lobby Cosmetics
+
+type.add_vanity=Lobby Cosmetics
+type.add_vanity.description=Unknown Cosmetic
+
+vanity.suits.description=1 of 4 unique cosmetic suit parts
+vanity.emotes.description=A unique animated Emote item
+vanity.gestures.description=A unique animated Gesture item
+vanity.unknown.description=Unknown cosmetic
+
+vanity.suit_treasure=Treasure Hunter Suit
+vanity.emote_moustache=Moustache Emote
+vanity.taunt_treasure=Dig for Treasure Gesture
+
+vanity.armor.helmet=Helmet
+vanity.armor.chestplate=Chestplate
+vanity.armor.leggings=Leggings
+vanity.armor.boots=Boots
+
+# Housing Skulls
+# Skulls are in 3 groups of 6, each with a color chest icon (red/green/blue)
+
+type.housing_package=Housing Block
+type.housing_package.description=1 of 6 unique Housing Blocks in this set
+
+housing.skull.red_treasure_chest=Red Treasure Chest
+housing.skull.blue_treasure_chest=Blue Treasure Chest
+housing.skull.green_treasure_chest=Green Treasure Chest
+housing.skull.gold_nugget=Gold Nugget
+housing.skull.pot_o_gold=Pot O' Gold
+housing.skull.rubiks_cube=Rubik's Cube
+housing.skull.piggy_bank=Piggy Bank
+housing.skull.health_potion=Health Potion
+housing.skull.coin_bag=Coin Bag
+housing.skull.ornamental_helmet=Ornamental Helmet
+housing.skull.pocket_galaxy=Pocket Galaxy
+housing.skull.mystic_pearl=Mystic Pearl
+housing.skull.agility_potion=Agility Potion
+housing.skull.golden_chalice=Golden Chalice
+housing.skull.jewelery_box=Jewelery Box
+housing.skull.crown=Crown
+housing.skull.molten_core=Molten Core
+housing.skull.mana_potion=Mana Potion
+housing.skull.unknown=Unknown Block
+
+# Fallback
+
+type.unknown=Unknown
+type.unknown.description=Unknown Reward

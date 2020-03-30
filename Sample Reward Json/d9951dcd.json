@@ -1,0 +1,38 @@
+{
+  "rewards": [
+    {
+      "gameType": "MURDER_MYSTERY",
+      "amount": 3000,
+      "rarity": "COMMON",
+      "reward": "coins"
+    },
+    {
+      "gameType": "ARCADE",
+      "amount": 40000,
+      "rarity": "RARE",
+      "reward": "coins"
+    },
+    {
+      "package": "specialoccasion_reward_card_skull_mystic_pearl",
+      "rarity": "RARE",
+      "reward": "housing_package"
+    }
+  ],
+  "id": "d9951dcd",
+  "skippable": true,
+  "dailyStreak": {
+    "value": 3,
+    "score": 3,
+    "highScore": 37,
+    "keeps": true,
+    "token": false
+  },
+  "ad": {
+    "video": "TRsCiBNYY7M",
+    "duration": 28,
+    "link": "https://store.hypixel.net/?utm_source=rewards-video&utm_medium=website&utm_content=TRsCiBNYY7M&utm_campaign=Rewards",
+    "buttonText": "Visit the Store"
+  },
+  "activeAd": 0,
+  "playwire": false
+}
