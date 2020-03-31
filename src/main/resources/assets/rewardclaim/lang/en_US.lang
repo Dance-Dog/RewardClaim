@@ -57,6 +57,7 @@ vanity.unknown.description=Unknown cosmetic
 vanity.suit_treasure=Treasure Hunter Suit
 vanity.emote_moustache=Moustache Emote
 vanity.taunt_treasure=Dig for Treasure Gesture
+vanity.unknown=Unknown Cosmetic
 
 vanity.armor.helmet=Helmet
 vanity.armor.chestplate=Chestplate
@@ -93,3 +94,4 @@ housing.skull.unknown=Unknown Block
 
 type.unknown=Unknown
 type.unknown.description=Unknown Reward
+type.unknown.amount=Unknown Amount

@@ -41,19 +41,24 @@ final class SessionDataParser {
 
     // Create session
     RewardSession session = new RewardSession();
-    session.setId(rawSessionJson.getAsJsonObject().get("id").getAsString());
+    session.setId(getStringFromJsonObject("id", rawSessionJson.getAsJsonObject()));
     session.setCsrfToken(csrfTokenElement.getAsString());
-    session
-        .setCookies(input.get("_cookie").getAsString()); // Our own value passed in through the JSON
+    session.setCookies(
+        getStringFromJsonObject("_cookie", input)); // Our own value passed in through the JSON
 
+    // Iterate over rewards
     JsonArray rawRewardArray = rawSessionJson.getAsJsonObject().get("rewards")
         .getAsJsonArray();
-    for (JsonElement item : rawRewardArray) {
-      if (!item.isJsonObject()) {
+    if (rawRewardArray.size() != 3) {
+      Mod.printWarning("Expected 3 rewards, but found " + rawRewardArray.size(), null, true);
+      return null;
+    }
+    for (int i = 0; i < 3; i++) {
+      if (rawRewardArray.get(i) == null || !rawRewardArray.get(i).isJsonObject()) {
         Mod.printWarning("Reward item was not a JsonObject", null, true);
         return null;
       }
-      JsonObject rawRewardJson = item.getAsJsonObject();
+      JsonObject rawRewardJson = rawRewardArray.get(i).getAsJsonObject();
 
       // Create reward card & related variables
       Reward card = new Reward();
@@ -111,8 +116,10 @@ final class SessionDataParser {
 
     } else if (rewardType == RewardType.ADD_VANITY) {
       titleKey = "vanity.";
-      if (vanityKey.contains("suit")) {
+      if (vanityKey != null && vanityKey.contains("suit")) {
         titleKey += vanityKey.replaceAll(VANITY_SUIT_PIECE_SUFFIX_REPLACEMENT_REGEX, "");
+      } else if (vanityKey == null) {
+        titleKey += "unknown";
       } else {
         titleKey += vanityKey;
       }
@@ -128,7 +135,7 @@ final class SessionDataParser {
    * Determine a reward's subtitle (bottom text on the card)
    *
    * @param rewardType   Type of reward
-   * @param housingSkull GameType of reward (coins/tokens)
+   * @param housingSkull Housing skull of reward (if housing_package)
    * @param vanityKey    Vanity key of the reward (if add_vanity)
    * @param rewardJson   Original reward session JsonObject
    * @return The reward's formatted subtitle
@@ -148,8 +155,10 @@ final class SessionDataParser {
         subtitleKey = "vanity." + vanityKey;
       }
 
-    } else {
+    } else if (rewardJson.get("amount") != null && rewardJson.get("amount").isJsonPrimitive()) {
       subtitleKey = "" + rewardJson.get("amount").getAsInt();
+    } else {
+      subtitleKey = "type.unknown.amount";
     }
 
     return I18n.format(subtitleKey);
@@ -187,6 +196,15 @@ final class SessionDataParser {
     return I18n.format(descriptionKeyBase + ".description");
   }
 
+  /**
+   * Determine a reward's description (bottom of card's tooltip)
+   *
+   * @param rewardType   Type of reward
+   * @param gameType     gameType GameType of reward (coins/tokens)
+   * @param vanityKey    Vanity key of the reward (if add_vanity)
+   * @param housingSkull Housing skull of reward (if housing_package)
+   * @return The reward's formatted description
+   */
   private static ResourceLocation getTypeIcon(RewardType rewardType, GameType gameType,
       String vanityKey, HousingSkullType housingSkull) {
     ResourceLocation typeIcon;
@@ -220,6 +238,14 @@ final class SessionDataParser {
     return typeIcon;
   }
 
+  /**
+   * Utility method to get a String from a JsonObject, or an empty String if the memberName couldn't
+   * be found
+   *
+   * @param memberName Key for the requested value
+   * @param jsonObject JsonObject to search
+   * @return String value of requested member, or an empty String if member could not be found
+   */
   private static String getStringFromJsonObject(String memberName, JsonObject jsonObject) {
     JsonElement member = jsonObject.get(memberName);
     if (member == null) {

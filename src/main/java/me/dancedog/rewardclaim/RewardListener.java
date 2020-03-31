@@ -73,10 +73,22 @@ public class RewardListener {
         Mod.printWarning("Failed to get reward: " + error.getAsString(), null, true);
         return;
       }
-      RewardSession session = SessionDataParser.parseRewardSessionData(rawRewardSessionData.get());
-      rawRewardSessionData.set(null);
-      Minecraft.getMinecraft()
-          .displayGuiScreen(new GuiScreenRewardSession(session));
+      try {
+        RewardSession session = SessionDataParser
+            .parseRewardSessionData(rawRewardSessionData.get());
+        if (session != null) {
+          Minecraft.getMinecraft()
+              .displayGuiScreen(new GuiScreenRewardSession(session));
+        }
+      } catch (Exception e) {
+        Mod.printWarning(
+            "Oops! We had some trouble reading your daily reward data. Please report this to the mod author with a screenshot of your daily reward page.",
+            null, true);
+        Mod.printWarning(e.getClass().getName() + " at " + e.getStackTrace()[0].toString(), e,
+            true);
+      } finally {
+        rawRewardSessionData.set(null);
+      }
     }
   }
 

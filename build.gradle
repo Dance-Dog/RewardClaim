@@ -17,7 +17,7 @@ compileJava {
 }
 
 archivesBaseName = 'RewardClaim'
-version = '0.1'
+version = '0.1.1'
 group = 'me.dancedog.rewardclaim'
 minecraft {
     version = '1.8.9-11.15.1.1722'
