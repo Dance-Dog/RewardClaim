@@ -15,7 +15,9 @@ public enum CardRarity {
   COMMON("rarity.common", 0xff9b4e, EnumChatFormatting.YELLOW),
   RARE("rarity.rare", 0x62e2de, EnumChatFormatting.AQUA),
   EPIC("rarity.epic", 0xc633e8, EnumChatFormatting.DARK_PURPLE),
-  LEGENDARY("rarity.legendary", 0xe2b751, EnumChatFormatting.GOLD);
+  LEGENDARY("rarity.legendary", 0xe2b751, EnumChatFormatting.GOLD),
+
+  ERROR(null, 0, EnumChatFormatting.DARK_RED);
 
   @Getter
   private final String displayName;
@@ -42,14 +44,13 @@ public enum CardRarity {
 
   public static CardRarity fromName(String name) {
     if (name == null || name.isEmpty()) {
-      return COMMON;
+      return null;
     }
-
     try {
       return valueOf(name.toUpperCase());
     } catch (IllegalArgumentException e) {
       e.printStackTrace();
-      return COMMON;
+      return null;
     }
   }
 }

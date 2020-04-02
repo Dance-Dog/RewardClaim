@@ -2,6 +2,7 @@ package me.dancedog.rewardclaim.ui;
 
 import java.io.IOException;
 import lombok.Getter;
+import me.dancedog.rewardclaim.Mod;
 import me.dancedog.rewardclaim.model.RewardSession;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
@@ -18,6 +19,7 @@ import net.minecraft.util.EnumChatFormatting;
 public class GuiScreenRewardSession extends GuiScreen {
 
   private State guiState = State.INITIAL;
+  private int chosenCard = -1;
   private RewardSession session;
 
   private GuiRewardCard[] cards = new GuiRewardCard[3];
@@ -26,15 +28,16 @@ public class GuiScreenRewardSession extends GuiScreen {
 
   public GuiScreenRewardSession(RewardSession session) {
     this.session = session;
+    for (int i = 0; i < 3; i++) {
+      this.cards[i] = new GuiRewardCard(session.getCards().get(i));
+    }
   }
 
   @Override
   public void initGui() {
-    guiState = State.INITIAL;
-
-    int middleCardX = width / 2 - (GuiRewardCard.CARD_WIDTH
-        / 2); // used with spacing to offset first and last cards
-    int cardY = height / 2 - (GuiRewardCard.CARD_HEIGHT / 2);
+    // Determine card position and spacing
+    int middleCardX = width / 2 - (GuiRewardCard.CARD_WIDTH / 2);
+    int posY = height / 2 - (GuiRewardCard.CARD_HEIGHT / 2);
     int cardSpacing = 20;
 
     // Reward cards
@@ -53,11 +56,7 @@ public class GuiScreenRewardSession extends GuiScreen {
         default:
           posX = 0;
       }
-      this.cards[i] = new GuiRewardCard(
-          session.getRewards().get(i),
-          posX,
-          cardY
-      );
+      this.cards[i].initGui(posX, posY);
     }
 
     // Close button ("X")
@@ -80,6 +79,8 @@ public class GuiScreenRewardSession extends GuiScreen {
 
     this.buttonList.add(closeButton);
     this.buttonList.add(activationButton);
+
+    refreshState();
   }
 
   @Override
@@ -87,6 +88,13 @@ public class GuiScreenRewardSession extends GuiScreen {
     // Draw bg & buttons
     this.drawGradientRect(0, 0, this.width, this.height, -1072689136, -804253680);
     super.drawScreen(mouseX, mouseY, partialTicks);
+
+    // Header
+    drawCenteredString(fontRendererObj,
+        EnumChatFormatting.GOLD + "" + EnumChatFormatting.BOLD + guiState.titleMessage,
+        width / 2,
+        (height / 2 - (GuiRewardCard.CARD_HEIGHT / 2)) / 2 - 5,
+        0);
 
     // Determine tooltip states
     if (guiState != State.INITIAL) {
@@ -100,12 +108,7 @@ public class GuiScreenRewardSession extends GuiScreen {
       rewardCard.drawRewardCard(mouseX, mouseY);
     }
 
-    drawCenteredString(fontRendererObj,
-        EnumChatFormatting.GOLD + "" + EnumChatFormatting.BOLD + guiState.titleMessage,
-        width / 2,
-        (height / 2 - (GuiRewardCard.CARD_HEIGHT / 2)) / 2 - 5,
-        0);
-
+    // Clickable text for reward page
     drawString(fontRendererObj,
         EnumChatFormatting.DARK_GRAY + "" + EnumChatFormatting.ITALIC + "Reward ID: " + session
             .getId(),
@@ -144,14 +147,10 @@ public class GuiScreenRewardSession extends GuiScreen {
 
       if (cards[i].isHovered(mouseX, mouseY)) {
         guiState = State.FINAL;
+        this.chosenCard = i;
+        refreshState();
 
-        for (GuiRewardCard rewardCard : cards) {
-          rewardCard.setFlipped(true);
-          rewardCard.setEnabled(false);
-        }
-
-        // Re-enable the selected card & claim its reward
-        cards[i].setEnabled(true);
+        Mod.getLogger().debug("Card {} was claimed", i);
         this.session.claimReward(i);
       }
     }
@@ -165,11 +164,29 @@ public class GuiScreenRewardSession extends GuiScreen {
       this.mc.setIngameFocus();
 
     } else if (button == activationButton) {
-      this.activationButton.enabled = false;
       this.guiState = State.CHOOSING;
+      refreshState();
+    }
+  }
+
+  /**
+   * Updates all elements according to the GUI's current state This prevents the GUI from resetting
+   * when the window gets resized
+   */
+  private void refreshState() {
+    if (this.guiState != State.INITIAL) {
+      this.activationButton.enabled = false;
       for (GuiRewardCard rewardCard : cards) {
         rewardCard.setEnabled(true);
       }
+    }
+
+    if (this.guiState == State.FINAL) {
+      for (GuiRewardCard rewardCard : cards) {
+        rewardCard.setFlipped(true);
+        rewardCard.setEnabled(false);
+      }
+      cards[chosenCard].setEnabled(true);
     }
   }
 

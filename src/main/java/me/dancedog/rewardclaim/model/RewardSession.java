@@ -1,10 +1,12 @@
 package me.dancedog.rewardclaim.model;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
-import lombok.Data;
+import lombok.Getter;
 import me.dancedog.rewardclaim.Mod;
 import me.dancedog.rewardclaim.fetch.Request;
 import me.dancedog.rewardclaim.fetch.Request.Method;
@@ -13,14 +15,55 @@ import me.dancedog.rewardclaim.fetch.Response;
 /**
  * Created by DanceDog / Ben on 3/22/20 @ 8:52 PM
  */
-@Data
 public class RewardSession {
 
+  @Getter
+  String error;
+  @Getter
   private String id;
+  @Getter
+  private List<RewardCard> cards;
+  @Getter
   private String csrfToken;
-  private String adVideoId;
-  private List<Reward> rewards = new ArrayList<>();
-  private String cookies;
+  @Getter
+  private String cookie;
+
+  /**
+   * Create a new reward session object from the session json (rewards, ad, streak, etc), the
+   * session's csrf token and the session's cookie
+   *
+   * @param raw    The session's raw json representation
+   * @param cookie The cookie received from the original reward request
+   */
+  public RewardSession(JsonObject raw, String cookie) {
+    if (!validateSessionData(raw)) {
+      if (raw != null && raw.has("error")) {
+        this.error = raw.get("error").getAsString();
+      } else {
+        this.error = "Invalid reward session data";
+      }
+      return;
+    }
+
+    this.id = raw.get("id").getAsString();
+    this.cards = new ArrayList<>();
+    for (JsonElement rewardElement : raw.get("rewards").getAsJsonArray()) {
+      this.cards
+          .add(new RewardCard(rewardElement != null ? rewardElement.getAsJsonObject() : null));
+    }
+    this.csrfToken = raw.get("_csrf").getAsString();
+    this.cookie = cookie;
+  }
+
+  private static boolean validateSessionData(JsonObject raw) {
+    return raw != null
+        && raw.has("id")
+        && raw.has("activeAd")
+        && raw.has("ad")
+        && raw.has("skippable")
+        && raw.has("rewards")
+        && raw.get("rewards").getAsJsonArray().size() == 3;
+  }
 
   public void claimReward(int option) {
     new Thread(() -> {
@@ -34,7 +77,7 @@ public class RewardSession {
             + "&watchedFallback=false";
         URL url = new URL(urlStr);
 
-        Response response = new Request(url, Method.POST, this.cookies).execute();
+        Response response = new Request(url, Method.POST, this.cookie).execute();
         if (response.getStatusCode() >= 200 && response.getStatusCode() < 300) {
           Mod.getLogger().info("Successfully claimed reward");
         } else {

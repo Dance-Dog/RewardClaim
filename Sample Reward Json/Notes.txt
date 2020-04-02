@@ -5,14 +5,43 @@
 
 ========== Field Meanings ==========
 - rewards.*.rarity: Rarity of the reward (CardType) [all]
+  - "COMMON", "RARE", "EPIC", or "LEGENDARY" (in order of worst to best)
+  - This field is always present
 - rewards.*.reward: Type of reward (RewardType) [all]
+  - Determines the main icon on the card (with the exception of housing_package; see below)
+  - This field is always present
 
-- rewards.*.gameType: Game that the reward is for (GameType) [coins and tokens only]
-- rewards.*.amount: Amount of type rewarded [all except housing_package and add_vanity]
-- rewards.*.intlist: Unknown; has something to do with amount [unknown; likely same as amount]
+- rewards.*.gameType: Game that the reward is for
+  - Only present for coins and tokens (not adsense_token)
+  - Determines the mini GameType icon
+
+- rewards.*.amount: Amount of type rewarded
+  - Present on every reward except housing_package, add_vanity, and mystery_box (and potentially gift_box too; see intlist)
+- rewards.*.intlist: An array of integers
+  - Only present for mystery_box (and potentially gift_box, but still unknown)
+  - The length of this array is displayed as the amount
+  - Each int in the array represents the 5-star value of a mystery box
+    - 0 = 1-star
+    - 4 = 5-star
 
 - rewards.*.package: Specifies the specific reward within the reward type [housing_package only]
+  - Housing block IDs are always prefixed by "specialoccasion_reward_card_skull_"
+  - The 18 housing blocks are grouped into 3 groups of 6
+    - Each group is represented by a colored treasure chest (red/green/blue) for the type icon
+    - The group has nothing to do with rarity
 - rewards.*.key: ID of the lobby cosmetic to reward [add_vanity only]
+  - For a suit piece, this looks like "suit_treasure_chestplate"
+  - For other cosmetics, this looks like "emote_moustache"
 
-========== I18n Notes ==========
-- rewards.*.key for a suit piece looks like "suit_treasure_chestplate"
+========== Reward Types ==========
+- add_vanity [no sample yet, but see FORGED for assumed JSON]
+- housing_package [see 6d302bf1]
+- mystery_box [uses intlist; see a1cfa0d3]
+- gift_box [no sample yet; unknown if uses intlist or amount]
+
+- coins [see 04f79703]
+- tokens [see 11a346e4]
+- dust [see 04f79703]
+- experience [see 8c3d7a5f]
+- adsense_token [see a25797d1]
+- souls [see a25797d1]

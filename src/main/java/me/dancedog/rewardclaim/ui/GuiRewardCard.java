@@ -5,7 +5,7 @@ import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
 import me.dancedog.rewardclaim.Mod;
-import me.dancedog.rewardclaim.model.Reward;
+import me.dancedog.rewardclaim.model.RewardCard;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.Gui;
@@ -26,9 +26,10 @@ class GuiRewardCard extends Gui {
   private static final ResourceLocation tooltipTexture = Mod
       .getGuiTexture("cards/card_tooltip.png");
 
-  private final Reward cardInfo;
-  private final int posX;
-  private final int posY;
+  private final RewardCard cardInfo;
+  private int posX = 0;
+  private int posY = 0;
+
   @Setter
   private boolean isFlipped = false;
   @Setter
@@ -38,14 +39,17 @@ class GuiRewardCard extends Gui {
   @Setter
   private boolean showTooltip = false;
 
-  GuiRewardCard(Reward cardInfo, int posX, int posY) {
+  GuiRewardCard(RewardCard cardInfo) {
     this.cardInfo = cardInfo;
-    this.posX = posX;
-    this.posY = posY;
 
     tooltipLines = new ArrayList<>();
     tooltipLines
         .add(EnumChatFormatting.WHITE + "" + EnumChatFormatting.ITALIC + cardInfo.getDescription());
+  }
+
+  void initGui(int posX, int posY) {
+    this.posX = posX;
+    this.posY = posY;
   }
 
   void drawRewardCard(int mouseX, int mouseY) {
@@ -125,15 +129,15 @@ class GuiRewardCard extends Gui {
           CARD_HEIGHT);
 
       // Game icon for coins
-      if (cardInfo.getGameIcon() != null) {
-        mc.getTextureManager().bindTexture(cardInfo.getGameIcon());
+      if (cardInfo.getGameType() != null) {
+        mc.getTextureManager().bindTexture(cardInfo.getGameType().getResource());
         drawModalRectWithCustomSizedTexture(posX + 65, posY + 63, 0, 0, 21, 21, 21, 21);
       }
 
       // Item icon for armor & housing blocks
       if (cardInfo.getItemIcon() != null) {
         // Background
-        mc.getTextureManager().bindTexture(cardInfo.getItemBg());
+        mc.getTextureManager().bindTexture(cardInfo.getItemIconBg());
         drawModalRectWithCustomSizedTexture(posX + 64, posY + 63, 0, 0, 28, 28, 28, 28);
 
         // Draw the item inside the background

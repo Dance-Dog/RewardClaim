@@ -11,9 +11,6 @@ import net.minecraft.util.ResourceLocation;
  */
 @SuppressWarnings("unused")
 public enum RewardType {
-  // Fallback
-  UNKNOWN("type.unknown", "UNKNOWN", false),
-
   // Generic rewards
   DUST("type.dust", "DUST"),
   EXPERIENCE("type.experience", "EXPERIENCE"),
@@ -29,7 +26,7 @@ public enum RewardType {
   ADD_VANITY("type.add_vanity", null, false);
 
   @Getter
-  private final String titleKey;
+  private final String title;
   @Getter
   private ResourceLocation icon;
   private final boolean hasAmount;
@@ -42,7 +39,7 @@ public enum RewardType {
   }
 
   RewardType(String title, String iconName, boolean hasAmount) {
-    this.titleKey = title;
+    this.title = title;
     this.hasAmount = hasAmount;
 
     if (iconName != null) {
@@ -56,14 +53,13 @@ public enum RewardType {
 
   public static RewardType fromName(String name) {
     if (name == null || name.isEmpty()) {
-      return UNKNOWN;
+      return null;
     }
-
     try {
       return valueOf(name.toUpperCase());
     } catch (IllegalArgumentException e) {
       e.printStackTrace();
-      return UNKNOWN;
+      return null;
     }
   }
 }

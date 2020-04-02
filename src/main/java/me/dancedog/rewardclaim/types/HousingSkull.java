@@ -10,7 +10,7 @@ import net.minecraft.util.ResourceLocation;
  * Created by DanceDog / Ben on 3/23/20 @ 4:50 PM
  */
 @SuppressWarnings("unused")
-public enum HousingSkullType {
+public enum HousingSkull {
   // Fallback
   UNKNOWN(HousingSkullGroup.RED),
 
@@ -43,12 +43,12 @@ public enum HousingSkullType {
   @Getter
   private final ResourceLocation resource;
 
-  HousingSkullType(HousingSkullGroup group) {
+  HousingSkull(HousingSkullGroup group) {
     this.group = group;
     this.resource = Mod.getGuiTexture("reward_sub/housing_skull/" + name().toUpperCase() + ".png");
   }
 
-  public static HousingSkullType fromName(String name) {
+  public static HousingSkull fromName(String name) {
     if (name == null || name.isEmpty()) {
       return UNKNOWN;
     }
