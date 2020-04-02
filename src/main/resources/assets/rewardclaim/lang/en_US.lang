@@ -47,12 +47,11 @@ type.tokens.description=In-game tokens for %s
 # Lobby Cosmetics
 
 type.add_vanity=Lobby Cosmetics
-type.add_vanity.description=Unknown Cosmetic
 
 vanity.suits.description=1 of 4 unique cosmetic suit parts
 vanity.emotes.description=A unique animated Emote item
 vanity.gestures.description=A unique animated Gesture item
-vanity.unknown.description=Unknown cosmetic
+vanity.unknown.description=An unknown lobby cosmetic
 
 vanity.suit_treasure=Treasure Hunter Suit
 vanity.emote_moustache=Moustache Emote
@@ -89,9 +88,3 @@ housing.skull.crown=Crown
 housing.skull.molten_core=Molten Core
 housing.skull.mana_potion=Mana Potion
 housing.skull.unknown=Unknown Block
-
-# Fallback
-
-type.unknown=Unknown
-type.unknown.description=Unknown Reward
-type.unknown.amount=Unknown Amount

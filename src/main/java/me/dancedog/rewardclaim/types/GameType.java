@@ -11,9 +11,6 @@ import net.minecraft.util.ResourceLocation;
  */
 @SuppressWarnings("unused")
 public enum GameType {
-  // Fallback
-  UNKNOWN("Unknown Game"),
-
   // Possible reward games
   QUAKECRAFT("Quakecraft"),
   WALLS("Walls"),
@@ -56,14 +53,13 @@ public enum GameType {
 
   public static GameType fromName(String name) {
     if (name == null || name.isEmpty()) {
-      return UNKNOWN;
+      return null;
     }
-
     try {
       return valueOf(name.toUpperCase());
     } catch (IllegalArgumentException e) {
       e.printStackTrace();
-      return UNKNOWN;
+      return null;
     }
   }
 }
