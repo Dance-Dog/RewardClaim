@@ -1,0 +1,45 @@
+{
+  "rewards": [
+    {
+      "intlist": [
+        4,
+        4,
+        4,
+        4,
+        4,
+        4
+      ],
+      "rarity": "LEGENDARY",
+      "reward": "mystery_box"
+    },
+    {
+      "gameType": "TNTGAMES",
+      "amount": 4000,
+      "rarity": "COMMON",
+      "reward": "coins"
+    },
+    {
+      "gameType": "SKYWARS",
+      "amount": 8000,
+      "rarity": "RARE",
+      "reward": "coins"
+    }
+  ],
+  "id": "a1cfa0d3",
+  "skippable": false,
+  "dailyStreak": {
+    "value": 0,
+    "score": 9,
+    "highScore": 9,
+    "keeps": true,
+    "token": false
+  },
+  "ad": {
+    "video": "GNhbZ5guqO0",
+    "duration": 30,
+    "link": "https://store.hypixel.net/?utm_source=rewards-video&utm_medium=website&utm_content=GNhbZ5guqO0&utm_campaign=Rewards",
+    "buttonText": "Visit the Store"
+  },
+  "activeAd": 2,
+  "playwire": false
+}

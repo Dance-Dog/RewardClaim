@@ -1,0 +1,36 @@
+{
+  "rewards": [
+    {
+      "amount": 100,
+      "rarity": "RARE",
+      "reward": "souls"
+    },
+    {
+      "amount": 1,
+      "rarity": "RARE",
+      "reward": "adsense_token"
+    },
+    {
+      "amount": 10,
+      "rarity": "COMMON",
+      "reward": "dust"
+    }
+  ],
+  "id": "a25797d1",
+  "skippable": true,
+  "dailyStreak": {
+    "value": 0,
+    "score": 9,
+    "highScore": 37,
+    "keeps": true,
+    "token": false
+  },
+  "ad": {
+    "video": "GNhbZ5guqO0",
+    "duration": 30,
+    "link": "https://store.hypixel.net/?utm_source=rewards-video&utm_medium=website&utm_content=GNhbZ5guqO0&utm_campaign=Rewards",
+    "buttonText": "Visit the Store"
+  },
+  "activeAd": 2,
+  "playwire": false
+}
