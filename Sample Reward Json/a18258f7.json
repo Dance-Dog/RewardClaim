@@ -1,0 +1,38 @@
+{
+  "rewards": [
+    {
+      "gameType": "SKYWARS",
+      "amount": 4000,
+      "rarity": "COMMON",
+      "reward": "coins"
+    },
+    {
+      "package": "specialoccasion_reward_card_skull_pocket_galaxy",
+      "rarity": "EPIC",
+      "reward": "housing_package"
+    },
+    {
+      "gameType": "BATTLEGROUND",
+      "amount": 6000,
+      "rarity": "RARE",
+      "reward": "coins"
+    }
+  ],
+  "id": "a18258f7",
+  "skippable": true,
+  "dailyStreak": {
+    "value": 1,
+    "score": 10,
+    "highScore": 37,
+    "keeps": true,
+    "token": true
+  },
+  "ad": {
+    "video": "GNhbZ5guqO0",
+    "duration": 30,
+    "link": "https://store.hypixel.net/?utm_source=rewards-video&utm_medium=website&utm_content=GNhbZ5guqO0&utm_campaign=Rewards",
+    "buttonText": "Visit the Store"
+  },
+  "activeAd": 2,
+  "playwire": false
+}
