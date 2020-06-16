@@ -4,8 +4,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Date;
 import java.util.concurrent.atomic.AtomicReference;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import me.dancedog.rewardclaim.fetch.Request;
 import me.dancedog.rewardclaim.fetch.Request.Method;
 import me.dancedog.rewardclaim.fetch.Response;
@@ -86,12 +84,13 @@ public class RewardListener {
    */
   @SubscribeEvent
   public void onChatReceived(ClientChatReceivedEvent event) {
-    Matcher chatMatcher = REWARD_MESSAGE_PATTERN.matcher(event.message.getFormattedText());
-    if (chatMatcher.find()) {
+    boolean chatMatcher = event.message.getUnformattedText().contains("Click the link to visit our website and claim your reward: https://rewards.hypixel.net/claim-reward/");
+    if (chatMatcher) {
       event.setCanceled(true);
       lastRewardOpenedMs = System.currentTimeMillis();
 
-      String sessionId = chatMatcher.group(1);
+      String sessionId = event.message.getUnformattedText().split("/")[4];
+
       Mod.getLogger().info("Triggered fetch for reward session #{}", sessionId);
       this.fetchRewardSession(sessionId);
     }
