@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 import javax.annotation.Nullable;
-import me.dancedog.rewardclaim.Mod;
+import me.dancedog.rewardclaim.RewardClaim;
 
 /**
  * Created by DanceDog / Ben on 3/29/20 @ 8:38 AM
@@ -20,7 +20,7 @@ public class Request {
     DEFAULT_HEADERS.put("Accept", "*/*");
     DEFAULT_HEADERS.put("Content-Length", "0");
     DEFAULT_HEADERS
-        .put("User-Agent", Mod.MODID + "/" + Mod.VERSION + " (Minecraft Forge Modification)");
+        .put("User-Agent", RewardClaim.MODID + "/" + RewardClaim.VERSION + " (Minecraft Forge Modification)");
   }
 
   private final URL url;

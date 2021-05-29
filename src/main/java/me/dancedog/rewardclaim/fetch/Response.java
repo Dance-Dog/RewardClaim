@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import lombok.Getter;
-import me.dancedog.rewardclaim.Mod;
+import me.dancedog.rewardclaim.RewardClaim;
 
 /**
  * Created by DanceDog / Ben on 3/29/20 @ 9:02 AM
@@ -32,7 +32,7 @@ public class Response {
       try {
         inputStream.close();
       } catch (IOException e) {
-        Mod.printWarning("Failed to close InputStream", e, false);
+        RewardClaim.printWarning("Failed to close InputStream", e, false);
         e.printStackTrace();
       }
     }

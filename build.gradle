@@ -1,49 +1,85 @@
-buildscript {
-    repositories {
-        jcenter()
-        maven {
-            name = "forge"
-            url = "http://files.minecraftforge.net/maven"
-        }
-    }
-    dependencies {
-        classpath 'net.minecraftforge.gradle:ForgeGradle:2.1-SNAPSHOT'
-    }
-}
-apply plugin: 'net.minecraftforge.gradle.forge'
-compileJava {
-    sourceCompatibility = '8'
-    targetCompatibility = '1.8'
+plugins {
+    id "java"
+    id "com.github.johnrengelman.shadow" version "6.1.0"
+    id "net.minecraftforge.gradle.forge" version "b13624b"
 }
 
-archivesBaseName = 'RewardClaim'
-version = '0.1.1'
-group = 'me.dancedog.rewardclaim'
-minecraft {
-    version = '1.8.9-11.15.1.1722'
-    runDir = 'run'
-    mappings = 'stable_20'
-}
-
-configurations {
-    shade
-    shade.transitive = false
-    compile.extendsFrom(shade)
-}
 repositories {
     mavenCentral()
 }
-dependencies {
-    compileOnly 'org.projectlombok:lombok:1.18.12'
-    annotationProcessor 'org.projectlombok:lombok:1.18.12'
-    shade 'org.jsoup:jsoup:1.13.1'
+
+version = "0.1.2"
+group = "me.dancedog"
+archivesBaseName = "rewardclaim"
+
+sourceCompatibility = targetCompatibility = JavaVersion.VERSION_1_8
+compileJava.options.encoding = 'UTF-8'
+
+minecraft {
+    version = "1.8.9-11.15.1.2318-1.8.9"
+    runDir = "run"
+    mappings = "stable_22"
+    makeObfSourceJar = false
 }
+
 jar {
-    from configurations.shade.collect {
-        it.isDirectory() ? it : zipTree(it)
+    enabled = false
+}
+
+configurations {
+    // Creates an extra configuration that implements `implementation` to be used later as the configuration that shades libraries
+    include
+    implementation.extendsFrom(include)
+}
+
+dependencies {
+    // How to normally add a dependency (If you don't want it to be added to the jar)
+    // implementation "com.example:example:1.0.0"
+    // If you would like to include it (have the library inside your jar) instead use
+    // include "com.example:example:1.0.0"
+
+    compileOnly("org.projectlombok:lombok:1.18.20")
+    include("org.jsoup:jsoup:1.13.1")
+
+    annotationProcessor("org.projectlombok:lombok:1.18.20")
+}
+
+// This adds support to ("embed", "shade", "include") libraries into our JAR
+shadowJar {
+    archiveClassifier.set('')
+    configurations = [project.configurations.include]
+
+    exclude "LICENSE.txt"
+    exclude "pack.mcmeta"
+    exclude "dummyThing"
+    exclude "**/module-info.class"
+    exclude "*.so"
+    exclude "*.dylib"
+    exclude "*.dll"
+    exclude "*.jnilib"
+    exclude "ibxm/**"
+    exclude "com/jcraft/**"
+    exclude "org/lwjgl/**"
+    exclude "net/java/**"
+
+    exclude "META-INF/proguard/**"
+    exclude "META-INF/maven/**"
+    exclude "META-INF/versions/**"
+    exclude "META-INF/com.android.tools/**"
+
+    duplicatesStrategy DuplicatesStrategy.EXCLUDE
+}
+
+reobf {
+    shadowJar {
+        classpath = sourceSets.main.compileClasspath
+        mappingType = "SEARGE"
     }
 }
 
+/**
+ * This task simply replaces the `${version}` and `${mcversion}` properties in the mcmod.info with the data from Gradle
+ */
 processResources {
     // this will ensure that this task is redone when the versions change.
     inputs.property "version", project.version
@@ -54,7 +90,7 @@ processResources {
         include 'mcmod.info'
 
         // replace version and mcversion
-        expand 'version':project.version, 'mcversion':project.minecraft.version
+        expand 'version': project.version, 'mcversion': project.minecraft.version
     }
 
     // copy everything else, thats not the mcmod.info
@@ -63,5 +99,17 @@ processResources {
     }
 }
 
-//noinspection GrDeprecatedAPIUsage
-sourceSets.main.output.classesDir = new File(buildDir, "classes/main")
+/**
+ * This task simply moves resources so they can be accessed at runtime, Forge is quite weird isn't it
+ */
+task moveResources {
+    doLast {
+        ant.move file: "${buildDir}/resources/main",
+                todir: "${buildDir}/classes/java"
+    }
+}
+
+moveResources.dependsOn processResources
+classes.dependsOn moveResources
+
+tasks.reobfJar.dependsOn(shadowJar)

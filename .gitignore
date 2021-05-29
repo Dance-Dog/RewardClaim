@@ -1,14 +1,29 @@
-/*
+# eclipse
+eclipse
+bin
+*.launch
+.settings
+.metadata
+.classpath
+.project
 
-# Important Dirs
-!/src
-!/Sample Reward Json
+# idea
+out
+classes
+*.ipr
+*.iws
+*.iml
+.idea
 
-# Minecraft Options
-!/run/options.txt
+# gradle
+build
+.gradle
 
-# Gradle & Wrapper
-!gradlew
-!gradlew.bat
-!build.gradle
-!/gradle
+#Netbeans
+.nb-gradle
+.nb-gradle-properties
+
+# other
+run
+.DS_Store
+Thumbs.db

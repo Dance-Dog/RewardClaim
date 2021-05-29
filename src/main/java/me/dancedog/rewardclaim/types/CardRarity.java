@@ -1,7 +1,7 @@
 package me.dancedog.rewardclaim.types;
 
 import lombok.Getter;
-import me.dancedog.rewardclaim.Mod;
+import me.dancedog.rewardclaim.RewardClaim;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.ResourceLocation;
 
@@ -36,9 +36,9 @@ public enum CardRarity {
     this.subtitleColor = subtitleColor;
     this.rarityColor = rarityColor;
 
-    this.backResource = Mod
+    this.backResource = RewardClaim
         .getGuiTexture("cards/cardback_" + name().toLowerCase() + ".png");
-    this.frontResource = Mod
+    this.frontResource = RewardClaim
         .getGuiTexture("cards/cardfront_" + name().toLowerCase() + ".png");
   }
 
