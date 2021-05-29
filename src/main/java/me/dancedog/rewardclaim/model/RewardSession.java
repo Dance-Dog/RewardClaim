@@ -7,7 +7,7 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.Getter;
-import me.dancedog.rewardclaim.Mod;
+import me.dancedog.rewardclaim.RewardClaim;
 import me.dancedog.rewardclaim.fetch.Request;
 import me.dancedog.rewardclaim.fetch.Request.Method;
 import me.dancedog.rewardclaim.fetch.Response;
@@ -79,13 +79,13 @@ public class RewardSession {
 
         Response response = new Request(url, Method.POST, this.cookie).execute();
         if (response.getStatusCode() >= 200 && response.getStatusCode() < 300) {
-          Mod.getLogger().info("Successfully claimed reward");
+          RewardClaim.getLogger().info("Successfully claimed reward");
         } else {
-          Mod.printWarning("Failed to claim reward. Server sent back a " + response.getStatusCode()
+          RewardClaim.printWarning("Failed to claim reward. Server sent back a " + response.getStatusCode()
               + " status code. Received the following body:\n" + response.getBody(), null, false);
         }
       } catch (IOException e) {
-        Mod.printWarning("IOException during claim reward request", e, false);
+        RewardClaim.printWarning("IOException during claim reward request", e, false);
       }
     }).start();
   }

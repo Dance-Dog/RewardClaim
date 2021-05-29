@@ -16,6 +16,7 @@ import net.minecraft.client.gui.GuiScreenBook;
 import net.minecraftforge.client.event.ClientChatReceivedEvent;
 import net.minecraftforge.client.event.GuiOpenEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
 import net.minecraftforge.fml.common.gameevent.TickEvent.ClientTickEvent;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
@@ -25,8 +26,7 @@ import org.jsoup.nodes.Document;
  */
 public class RewardListener {
 
-  private static final Pattern REWARD_MESSAGE_PATTERN = Pattern.compile(
-      "§r§6Click the link to visit our website and claim your reward: §r§bhttp://rewards\\.hypixel\\.net/claim-reward/([A-Za-z0-9]+)§r");
+  private static final Pattern REWARD_MESSAGE_PATTERN = Pattern.compile("§r§6Click the link to visit our website and claim your reward: §r§bhttps://rewards\\.hypixel\\.net/claim-reward/([A-Za-z0-9]+)§r");
 
   private long lastRewardOpenedMs = new Date().getTime();
   private final AtomicReference<RewardSession> sessionData = new AtomicReference<>();
@@ -50,11 +50,11 @@ public class RewardListener {
               .parseSessionFromRewardPage(document, response.getNewCookies());
           sessionData.set(session);
         } else {
-          Mod.printWarning("Server sent back a " + response.getStatusCode()
+          RewardClaim.printWarning("Server sent back a " + response.getStatusCode()
               + " status code. Received the following body:\n" + response.getBody(), null, false);
         }
       } catch (IOException e) {
-        Mod.printWarning("IOException while fetching reward page", e, false);
+        RewardClaim.printWarning("IOException while fetching reward page", e, false);
       }
     }).start();
   }
@@ -66,18 +66,16 @@ public class RewardListener {
    */
   @SubscribeEvent
   public void onClientTick(ClientTickEvent event) {
-    if (Minecraft.getMinecraft().theWorld == null) {
-      return;
-    }
+    if (Minecraft.getMinecraft().theWorld == null) return;
+    if (event.phase != TickEvent.Phase.START) return;
 
     RewardSession currentSessionData = sessionData.getAndSet(null);
     if (currentSessionData != null) {
       if (currentSessionData.getError() != null) {
-        Mod.printWarning("Failed to get reward: " + currentSessionData.getError(), null, true);
+        RewardClaim.printWarning("Failed to get reward: " + currentSessionData.getError(), null, true);
         return;
       }
-      Minecraft.getMinecraft()
-          .displayGuiScreen(new GuiScreenRewardSession(currentSessionData));
+      Minecraft.getMinecraft().displayGuiScreen(new GuiScreenRewardSession(currentSessionData));
     }
   }
 
@@ -92,7 +90,7 @@ public class RewardListener {
       lastRewardOpenedMs = System.currentTimeMillis();
 
       String sessionId = chatMatcher.group(1);
-      Mod.getLogger().info("Triggered fetch for reward session #{}", sessionId);
+      RewardClaim.getLogger().info("Triggered fetch for reward session #{}", sessionId);
       this.fetchRewardSession(sessionId);
     }
   }

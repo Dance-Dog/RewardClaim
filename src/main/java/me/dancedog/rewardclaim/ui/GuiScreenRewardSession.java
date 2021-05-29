@@ -2,7 +2,7 @@ package me.dancedog.rewardclaim.ui;
 
 import java.io.IOException;
 import lombok.Getter;
-import me.dancedog.rewardclaim.Mod;
+import me.dancedog.rewardclaim.RewardClaim;
 import me.dancedog.rewardclaim.model.RewardSession;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
@@ -20,9 +20,9 @@ public class GuiScreenRewardSession extends GuiScreen {
 
   private State guiState = State.INITIAL;
   private int chosenCard = -1;
-  private RewardSession session;
+  private final RewardSession session;
 
-  private GuiRewardCard[] cards = new GuiRewardCard[3];
+  private final GuiRewardCard[] cards = new GuiRewardCard[3];
   private GuiButton closeButton;
   private GuiButton activationButton; // used to get the cursor out of center
 
@@ -150,7 +150,7 @@ public class GuiScreenRewardSession extends GuiScreen {
         this.chosenCard = i;
         refreshState();
 
-        Mod.getLogger().debug("Card {} was claimed", i);
+        RewardClaim.getLogger().debug("Card {} was claimed", i);
         this.session.claimReward(i);
       }
     }

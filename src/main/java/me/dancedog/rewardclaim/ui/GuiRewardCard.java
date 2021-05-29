@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
-import me.dancedog.rewardclaim.Mod;
+import me.dancedog.rewardclaim.RewardClaim;
 import me.dancedog.rewardclaim.model.RewardCard;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;
@@ -23,7 +23,7 @@ class GuiRewardCard extends Gui {
   static final int CARD_HEIGHT = (int) Math.ceil(CARD_WIDTH * 1.43);
   private static final Minecraft mc = Minecraft.getMinecraft();
   private static final FontRenderer fontRendererObj = mc.fontRendererObj;
-  private static final ResourceLocation tooltipTexture = Mod
+  private static final ResourceLocation tooltipTexture = RewardClaim
       .getGuiTexture("cards/card_tooltip.png");
 
   private final RewardCard cardInfo;
@@ -35,7 +35,7 @@ class GuiRewardCard extends Gui {
   @Setter
   private boolean isEnabled = false;
   @Getter
-  private List<String> tooltipLines;
+  private final List<String> tooltipLines;
   @Setter
   private boolean showTooltip = false;
 

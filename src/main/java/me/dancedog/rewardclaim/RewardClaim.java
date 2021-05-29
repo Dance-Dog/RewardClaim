@@ -6,21 +6,17 @@ import net.minecraft.util.ChatComponentText;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-@net.minecraftforge.fml.common.Mod(
-    modid = Mod.MODID,
-    version = Mod.VERSION,
-    name = Mod.MODNAME,
-    useMetadata = true)
-public class Mod {
-
+@Mod(modid = RewardClaim.MODID, version = RewardClaim.VERSION, name = RewardClaim.MODNAME, useMetadata = true, clientSideOnly = true)
+public class RewardClaim {
   public static final String MODID = "rewardclaim";
-  public static final String VERSION = "0.1.1";
+  public static final String VERSION = "0.1.2";
   static final String MODNAME = "RewardClaim";
 
   @Getter

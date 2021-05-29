@@ -1,7 +1,7 @@
 package me.dancedog.rewardclaim.types;
 
 import lombok.Getter;
-import me.dancedog.rewardclaim.Mod;
+import me.dancedog.rewardclaim.RewardClaim;
 import net.minecraft.util.ResourceLocation;
 
 /**
@@ -43,7 +43,7 @@ public enum RewardType {
     this.hasAmount = hasAmount;
 
     if (iconName != null) {
-      this.icon = Mod.getGuiTexture("reward_base/" + iconName + ".png");
+      this.icon = RewardClaim.getGuiTexture("reward_base/" + iconName + ".png");
     }
   }
 

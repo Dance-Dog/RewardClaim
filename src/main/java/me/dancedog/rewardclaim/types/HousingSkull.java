@@ -1,7 +1,7 @@
 package me.dancedog.rewardclaim.types;
 
 import lombok.Getter;
-import me.dancedog.rewardclaim.Mod;
+import me.dancedog.rewardclaim.RewardClaim;
 import net.minecraft.util.ResourceLocation;
 
 /**
@@ -45,7 +45,7 @@ public enum HousingSkull {
 
   HousingSkull(HousingSkullGroup group) {
     this.group = group;
-    this.resource = Mod.getGuiTexture("reward_sub/housing_skull/" + name().toUpperCase() + ".png");
+    this.resource = RewardClaim.getGuiTexture("reward_sub/housing_skull/" + name().toUpperCase() + ".png");
   }
 
   public static HousingSkull fromName(String name) {
